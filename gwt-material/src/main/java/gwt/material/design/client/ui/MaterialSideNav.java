@@ -113,7 +113,7 @@ public class MaterialSideNav extends MaterialWidget implements JsLoader, HasSele
 
         if (showOnAttach != null) {
             // Ensure the side nav starts closed
-            $(activator).trigger("menu-in", null);
+            $(activator).sideNav("hide");
 
             if (showOnAttach) {
                 Scheduler.get().scheduleDeferred(() -> {

@@ -19,6 +19,7 @@
  */
 package gwt.material.design.client.js;
 
+import gwt.material.design.jquery.client.api.Functions;
 import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsProperty;
 import jsinterop.annotations.JsType;
@@ -35,4 +36,9 @@ public class JsSideNavOptions {
     @JsProperty
     public boolean closeOnClick;
 
+    @JsProperty
+    public boolean draggable;
+
+    @JsProperty
+    public Functions.Func onOpen, onClose;
 }

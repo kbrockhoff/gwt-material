@@ -33,6 +33,7 @@ import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.ui.HasEnabled;
 import com.google.gwt.user.client.ui.UIObject;
 import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.user.client.ui.WidgetCollection;
 import gwt.material.design.client.base.*;
 import gwt.material.design.client.base.helper.DOMHelper;
 import gwt.material.design.client.constants.Alignment;
@@ -151,7 +152,7 @@ public class MaterialDropDown extends UnorderedList implements JsLoader, HasSele
 
     @Override
     public void unload() {
-        $(activatorElement).dropdown("remove");
+        // Nothing for now
     }
 
     @Override
