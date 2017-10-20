@@ -140,11 +140,14 @@ public class MaterialDatePicker extends AbstractValueWidget<Date> implements JsL
             options.set = thing -> {
                 if (thing.hasOwnProperty("clear")) {
                     clear();
-                } else if (thing.hasOwnProperty("select")) {
-                    select();
                 }
             };
         }
+
+        getPicker().on("set", event -> {
+            select();
+            return true;
+        });
 
         getPicker().on(options).on("open", (e, param1) -> {
             onOpen();
@@ -174,7 +177,9 @@ public class MaterialDatePicker extends AbstractValueWidget<Date> implements JsL
     public void unload() {
         JsMaterialElement picker = getPicker();
         if (picker != null) {
-            picker.stop();
+            picker.off("set");
+            picker.off("open");
+            picker.off("close");
         }
     }
 
@@ -650,12 +655,14 @@ public class MaterialDatePicker extends AbstractValueWidget<Date> implements JsL
     @Override
     public void clear() {
         dateInput.clear();
-        getPicker().set("select", null);
-
+        if (getPicker() != null) {
+            getPicker().set("select", null);
+        }
         // Clear all active / error styles on datepicker
         clearErrorOrSuccess();
         label.removeStyleName(CssName.ACTIVE);
         dateInput.removeStyleName(CssName.VALID);
+
     }
 
     protected void setPopupEnabled(boolean enabled) {
